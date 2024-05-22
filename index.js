@@ -17,7 +17,6 @@ const PORT = process.env.PORT || 4000;
 
 const defaultData = { users: [] };
 
-// const adapter = new JSONFile("db.json");
 const db = new Low(new JSONFileSync("db.json"), {});
 
 db.read();
@@ -53,7 +52,6 @@ app.get("/", (req, res) => {
   res.send("Welcome to the API!");
 });
 
-// app.use("/books", booksRouter);
 app.use("/user", userRouter);
 // Sign-up route
 app.post("/signup", async (req, res) => {
