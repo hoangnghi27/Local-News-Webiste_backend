@@ -1,3 +1,12 @@
 {
-  "users": []
+  "users": [
+    {
+      "id": "acdfX5TjNeAT-ilsd9dOS",
+      "username": "2159027",
+      "password": "$2b$10$KIRBU1o2wrHWgF9jAcjQ8OB9LZNlO3HUH4ksTgW18E5hsAQtippgi",
+      "email": "natnghil0911@gmail.com",
+      "phoneNumber": "0905467890",
+      "address": "227 Nguyen Van Cu"
+    }
+  ]
 }
