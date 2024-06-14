@@ -139,4 +139,11 @@ router.post("/signin", async (req, res) => {
   }
 });
 
+/*Update the user's profile (I took reference from the website)*/
+router.put()
+"/profile",
+verifyAccessToken,
+async(req,res) => {
+ 
+}
 export default router;
