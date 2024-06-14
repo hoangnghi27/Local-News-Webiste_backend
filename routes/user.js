@@ -140,10 +140,17 @@ router.post("/signin", async (req, res) => {
 });
 
 /*Update the user's profile (I took reference from the website)*/
-router.put()
-"/profile",
-verifyAccessToken,
-async(req,res) => {
- 
-}
+router.put("/profile", verifyAccessToken, async (req, res) => {
+  const profileURL = req.params.profileURL;
+  if (!profileURL) {
+    return res.status(400).send("Bad request");
+  }
+  try {
+    const updatedProfile = await updatedProfileURL(req.body);
+    res.status(200).json(updatedProfile);
+  } catch (error) {
+    res.status(500).send();
+  }
+});
+
 export default router;
