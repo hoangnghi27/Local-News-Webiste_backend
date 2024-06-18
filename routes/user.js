@@ -139,4 +139,29 @@ router.post("/signin", async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /logout:
+ *   get:
+ *     summary: Logs out the user
+ *     description: This endpoint clears the JWT token from the client side storage by sending a response without a token.
+ *     responses:
+ *       200:
+ *         description: Successfully logged out
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 accessToken:
+ *                   type: string
+ *                   description: The access token for the user. Will be null after logout.
+ *                   example: null
+ */
+
+router.get("/logout", (req, res) => {
+  // Clear the token from the client side storage by sending a response without token
+  res.json({ accessToken: null });
+});
+
 export default router;
