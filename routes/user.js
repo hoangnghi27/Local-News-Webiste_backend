@@ -139,34 +139,6 @@ router.post("/signin", async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-/**
- * @swagger
- * /logout:
- *   get:
- *     summary: Logs out the user
- *     description: This endpoint clears the JWT token from the client side storage by sending a response without a token.
- *     responses:
- *       200:
- *         description: Successfully logged out
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 accessToken:
- *                   type: string
- *                   description: The access token for the user. Will be null after logout.
- *                   example: null
- */
-
-router.get("/logout", (req, res) => {
-  // Clear the token from the client side storage by sending a response without token
-  res.json({ accessToken: null });
-=======
-=======
->>>>>>> 35f69ea50ad07fdab05c1cfe5f7c60e67eb9569c
 /*Update the user's profile (I took reference from the website)*/
 router.put("/profile", verifyAccessToken, async (req, res) => {
   const profileURL = req.params.profileURL;
@@ -179,10 +151,6 @@ router.put("/profile", verifyAccessToken, async (req, res) => {
   } catch (error) {
     res.status(500).send();
   }
-<<<<<<< HEAD
->>>>>>> 35f69ea50ad07fdab05c1cfe5f7c60e67eb9569c
-=======
->>>>>>> 35f69ea50ad07fdab05c1cfe5f7c60e67eb9569c
 });
 
 export default router;
