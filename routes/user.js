@@ -175,7 +175,7 @@ router.get("/logout", (req, res) => {
     } catch (error) {
       res.status(500).send();
     }
-  });
+  })
 });
 
 export default router;
