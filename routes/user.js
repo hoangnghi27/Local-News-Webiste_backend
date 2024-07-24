@@ -1,7 +1,12 @@
+
+import dotenv from "dotenv";
+dotenv.config();
+
 import express from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { nanoid } from "nanoid";
+import { verifyAccessToken, updatedProfileURL } from "./auth.js";
 
 const router = express.Router();
 
@@ -139,31 +144,7 @@ router.post("/signin", async (req, res) => {
   }
 });
 
-/**
- * @swagger
- * /logout:
- *   get:
- *     summary: Logs out the user
- *     description: This endpoint clears the JWT token from the client side storage by sending a response without a token.
- *     responses:
- *       200:
- *         description: Successfully logged out
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 accessToken:
- *                   type: string
- *                   description: The access token for the user. Will be null after logout.
- *                   example: null
- */
-
-router.get("/logout", (req, res) => {
-  // Clear the token from the client side storage by sending a response without token
-  res.json({ accessToken: null });
-
-/*Update the user's profile (I took reference from the website)*/
+/*Update the user's profile*/
 router.put("/profile", verifyAccessToken, async (req, res) => {
   const profileURL = req.params.profileURL;
   if (!profileURL) {
@@ -173,7 +154,90 @@ router.put("/profile", verifyAccessToken, async (req, res) => {
     const updatedProfile = await updatedProfileURL(req.body);
     res.status(200).json(updatedProfile);
   } catch (error) {
-    res.status(500).send();
+    console.error("Error creating user:", error);
+    res.status(500).send(error.message);
+  }
+});
+
+/* Update the user's profile */
+
+/**
+ * /profile:
+    put:
+      summary: Update user profile
+      description: Update user profile information
+      security:
+        - Bearer: []
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: profile
+          description: User profile information
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+              email:
+                type: string
+              phoneNumber:
+                type: string
+              address:
+                type: string
+              password:
+                type: string
+            required:
+              - username
+              - email
+      responses:
+        200:
+          description: Profile updated successfully
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+        404:
+          description: User not found
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+        500:
+          description: Internal Server Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+ */
+
+router.put("/profile", verifyAccessToken, async (req, res) => {
+  const userId = req.user.id; // Get the user ID from the verified token
+  const users = req.app.db.get("users");
+  const user = users.find((user) => user.id === userId);
+  if (!user) {
+    return res.status(404).send("User not found");
+  }
+  try {
+    // Update the user's profile information
+    user.username = req.body.username || user.username;
+    user.email = req.body.email || user.email;
+    user.phoneNumber = req.body.phoneNumber || user.phoneNumber;
+    user.address = req.body.address || user.address;
+    // Hash the new password if provided
+    if (req.body.password) {
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
+      user.password = hashedPassword;
+    }
+    // Save the updated user to the database
+    await req.app.db.write();
+    res.status(200).json({ message: "Profile updated successfully" });
+  } catch (error) {
+    console.error("Error updating profile:", error);
+    res.status(500).send(error.message);
   }
 });
 
