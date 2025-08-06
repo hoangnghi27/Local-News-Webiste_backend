@@ -1,3 +1,6 @@
+<h1>Author</h1>
+<h3>Nguyen Dinh Anh Hao</h3>
+
 <h1>Overview</h1>
       <h3>
         This project was developed as the final assignment for the Project
