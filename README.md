@@ -1,25 +1,43 @@
-<h1>Author</h1>
-<h3>Nguyen Dinh Anh Hao</h3>
+# LocalNew
 
-<h1>Overview</h1>
-      <h3>
-        This project was developed as the final assignment for the Project
-        Management course.
-      </h3>
-      <h4>
-        <strong>LocalNew</strong> is a web application focused on [briefly
-        describe the main purpose], featuring a secure and efficient backend
-        built with the following technologies:
-      </h4>
-      <ul>
-        <li>Node.js</li>
-        <li>Express.js</li>
-        <li>Lowdb (for lightweight JSON-based database)</li>
-        <li>cors (for handling Cross-Origin Resource Sharing)</li>
-        <li>morgan (HTTP request logger)</li>
-        <li>swagger-ui-express (API documentation)</li>
-        <li>bcrypt (for password hashing)</li>
-        <li>nanoid (for generating unique IDs)</li>
-        <li>jsonwebtoken (for JWT authentication)</li>
-        <li>JavaScript ES modules</li>
-      </ul>
+**Final Project for Project Management Course**  
+Developed by:
+
+- **Team Leader**: Nguyen Dinh Anh Hao
+- **Team Members**: Le Nguyen Hoang Nghi, Tao Cam Xuong
+
+---
+
+## Overview
+
+**LocalNew** is a web application designed to [briefly describe the main purpose — e.g., "deliver hyperlocal news updates tailored to community interests"].  
+This project was developed as the final assignment for our Project Management course, emphasizing agile methodologies, team collaboration, and full-stack development.
+
+The backend is built for security, scalability, and simplicity using modern JavaScript technologies.
+
+## Tech Stack
+
+| Technology                | Purpose                                        |
+| ------------------------- | ---------------------------------------------- |
+| **Node.js**               | JavaScript runtime for server-side development |
+| **Express.js**            | Web framework for building RESTful APIs        |
+| **Lowdb**                 | Lightweight JSON-based database                |
+| **cors**                  | Handles Cross-Origin Resource Sharing          |
+| **morgan**                | HTTP request logging                           |
+| **swagger-ui-express**    | API documentation interface                    |
+| **bcrypt**                | Secure password hashing                        |
+| **nanoid**                | Unique ID generation                           |
+| **jsonwebtoken**          | JWT-based authentication                       |
+| **JavaScript ES Modules** | Modular code structure                         |
+
+---
+
+## How to Run
+
+**Clone the repository - run server**
+
+```bash
+git clone https://github.com/hoangnghi27/Local-News-Webiste_backend.git
+npm install
+npm run dev
+```
