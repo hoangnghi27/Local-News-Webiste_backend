@@ -10,4 +10,4 @@
 .env.test.local
 .env.production.local
 
-.env
+.envnode_modules/
